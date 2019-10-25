@@ -100,11 +100,11 @@ def comment(request, id):
     return render(request, 'comments.html', {"mycomments":mycomments})
 
 
-# class ProfileList(APIView):
-#     def get(self, request, format=None):
-#         all_users = Profile.objects.all()
-#         serializers = ProfileSerializer(all_users, many=True)
-#         return Response(serializers.data)
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_users = Profile.objects.all()
+        serializers = ProfileSerializer(all_users, many=True)
+        return Response(serializers.data)
 
 # class ProjectList(APIView):
 #     def get(self, request, format=None):
