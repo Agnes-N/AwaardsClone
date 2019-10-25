@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+
+{% load staticfiles %}
+{% block content %}
+{{block.super}}
+
+<!-- <p>Sites of the day</p> -->
+<div class="container">
+    <div class="row" style="margin-top: 3%">
+        <div class="col-md-12">
+                <h2 style="margin-top: 3%; margin-bottom:3%">ALL COMMENTS</h2>
+        {% for comments in mycomments %}
+        <p>{{comments.comment}}</p>
+        <!-- <p>{{comments.user}}</p> -->
+        {% endfor %}
+                
+        </div>
+    </div>  
+</div>
+{% endblock %}

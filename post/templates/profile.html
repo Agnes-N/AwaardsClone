@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+
+{% block content %}
+{{block.super}}
+<style>
+        .avatar {
+            vertical-align: middle;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+</style>
+
+<div class="container" style="margin-top:3%">
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="btn btn-info" href="{%url 'edit'%}" style="color: black">Create Profile</a>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-md-1">
+            <div class="profile" style="margin-top: -7%">
+                    <img src="{{my_profile.profile_picture.url}}" class="img-responsive avatar">
+            </div>
+        </div>
+        <div class="col-md-11">
+        <div class="imagecaption" style="margin-left: 15%">
+                <h5>{{my_profile.user}}</h5>
+                <h5>{{my_profile.bio}}</h5>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<div class="container">
+    <div class="row" style="margin-top: 3%; margin-left: 3%;margin-right:3%">
+    {% for x in my_projects %}
+        <div class="col-md-4" style="margin-right:3%;margin-top: 3%;">   
+        <img src="{{x.project_image.url}}" height="200" height="200" class="img-responsive" alt="Image">
+        </div>
+    {% endfor %}
+</div> 
+</div>
+{% endblock %}
