@@ -65,16 +65,16 @@ def one_project(request,id):
     ones_project = Project.objects.filter(id = id)
     return render(request,'project.html',{"ones_project":ones_project})
 
-# @login_required(login_url='/accounts/login/')
-# def search_project(request):
-#     if 'project_name' in request.GET and request.GET["project_name"]:
-#         search_term = request.GET.get("project_name")
-#         searched_project = Project.search_by_title(search_term)
-#         message = f"{search_term}"
-#         return render(request, "search.html",{"message":message,"project": searched_project})
-#     else:
-#         message = "You haven't searched for any term"
-#         return render(request, 'search.html',{"message":message})
+@login_required(login_url='/accounts/login/')
+def search_project(request):
+    if 'project_name' in request.GET and request.GET["project_name"]:
+        search_term = request.GET.get("project_name")
+        searched_project = Project.search_by_title(search_term)
+        message = f"{search_term}"
+        return render(request, "search.html",{"message":message,"project": searched_project})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
 
 # @login_required(login_url='/accounts/login/')
 # def add_comment(request, proj_id):
