@@ -51,13 +51,13 @@ def add_profile(request):
         form = NewProfileForm()
     return render(request, 'edit_profile.html', {"form": form})
 
-# @login_required(login_url='/accounts/login/')
-# def my_profile(request):
+@login_required(login_url='/accounts/login/')
+def my_profile(request):
 
-#     current_user = request.user
-#     my_projects = Project.objects.filter(user = current_user)
-#     my_profile = Profile.objects.filter(user = current_user).first()
-#     return render(request, 'profile.html', {"my_projects":my_projects, "my_profile":my_profile})
+    current_user = request.user
+    my_projects = Project.objects.filter(user = current_user)
+    my_profile = Profile.objects.filter(user = current_user).first()
+    return render(request, 'profile.html', {"my_projects":my_projects, "my_profile":my_profile})
 
 # @login_required(login_url='/accounts/login/') 
 # def one_project(request,id):
