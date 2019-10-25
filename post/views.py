@@ -59,11 +59,11 @@ def my_profile(request):
     my_profile = Profile.objects.filter(user = current_user).first()
     return render(request, 'profile.html', {"my_projects":my_projects, "my_profile":my_profile})
 
-# @login_required(login_url='/accounts/login/') 
-# def one_project(request,id):
+@login_required(login_url='/accounts/login/') 
+def one_project(request,id):
 
-#     ones_project = Project.objects.filter(id = id)
-#     return render(request,'project.html',{"ones_project":ones_project})
+    ones_project = Project.objects.filter(id = id)
+    return render(request,'project.html',{"ones_project":ones_project})
 
 # @login_required(login_url='/accounts/login/')
 # def search_project(request):
