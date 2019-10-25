@@ -94,10 +94,10 @@ def add_comment(request, proj_id):
         form = CommentForm()
     return render(request, 'comment_form.html', {"form": form, "proj_id": proj_id})
 
-# @login_required(login_url='/accounts/login/')
-# def comment(request, id):
-#     mycomments = Comments.objects.filter(commented_project = id).all()
-#     return render(request, 'comments.html', {"mycomments":mycomments})
+@login_required(login_url='/accounts/login/')
+def comment(request, id):
+    mycomments = Comments.objects.filter(commented_project = id).all()
+    return render(request, 'comments.html', {"mycomments":mycomments})
 
 
 # class ProfileList(APIView):
