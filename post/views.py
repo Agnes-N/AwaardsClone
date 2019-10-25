@@ -35,21 +35,21 @@ def upload_project(request):
         form = NewProjectForm()
     return render(request, 'upload_project.html', {"form": form})
 
-# @login_required(login_url='/accounts/login/')
-# def add_profile(request):
-#     current_user = request.user
-#     profile = Profile.objects.filter(id = current_user.id)
-#     if request.method == 'POST':
-#         form = NewProfileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             caption = form.save(commit=False)
-#             caption.user = current_user
-#             caption.save()
-#             return redirect('myprofile')
+@login_required(login_url='/accounts/login/')
+def add_profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(id = current_user.id)
+    if request.method == 'POST':
+        form = NewProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            caption = form.save(commit=False)
+            caption.user = current_user
+            caption.save()
+            return redirect('myprofile')
 
-#     else:
-#         form = NewProfileForm()
-#     return render(request, 'edit_profile.html', {"form": form})
+    else:
+        form = NewProfileForm()
+    return render(request, 'edit_profile.html', {"form": form})
 
 # @login_required(login_url='/accounts/login/')
 # def my_profile(request):
