@@ -76,23 +76,23 @@ def search_project(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
 
-# @login_required(login_url='/accounts/login/')
-# def add_comment(request, proj_id):
-#     current_user = request.user
-#     project_item = Project.objects.filter(id = proj_id).first()
-#     profiless = Profile.objects.filter(user = current_user.id).first()
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.posted_by = profiless
-#             comment.commented_project = project_item
-#             comment.save()
-#             return redirect('welcome')
+@login_required(login_url='/accounts/login/')
+def add_comment(request, proj_id):
+    current_user = request.user
+    project_item = Project.objects.filter(id = proj_id).first()
+    profiless = Profile.objects.filter(user = current_user.id).first()
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.posted_by = profiless
+            comment.commented_project = project_item
+            comment.save()
+            return redirect('welcome')
 
-#     else:
-#         form = CommentForm()
-#     return render(request, 'comment_form.html', {"form": form, "proj_id": proj_id})
+    else:
+        form = CommentForm()
+    return render(request, 'comment_form.html', {"form": form, "proj_id": proj_id})
 
 # @login_required(login_url='/accounts/login/')
 # def comment(request, id):
