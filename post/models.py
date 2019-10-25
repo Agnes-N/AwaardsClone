@@ -47,17 +47,17 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete() 
 
-# class Comments(models.Model):
-#     comment = models.CharField(max_length = 250)
-#     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
-#     posted_by = models.ForeignKey(Profile, on_delete=models.CASCADE, null = True)
-#     commented_project = models.ForeignKey(Project, on_delete=models.CASCADE, null = True)
+class Comments(models.Model):
+    comment = models.CharField(max_length = 250)
+    user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    posted_by = models.ForeignKey(Profile, on_delete=models.CASCADE, null = True)
+    commented_project = models.ForeignKey(Project, on_delete=models.CASCADE, null = True)
 
-#     def save_comments(self):
-#         self.save()
+    def save_comments(self):
+        self.save()
 
-#     def delete_comments(self):
-#         self.delete()
+    def delete_comments(self):
+        self.delete()
 
-#     def __str__(self):
-#         return self.posted_by
+    def __str__(self):
+        return self.posted_by
