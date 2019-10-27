@@ -85,6 +85,14 @@ class ProfileTestClass(TestCase):
     def test_instance(self):
             self.assertTrue(isinstance(self.nature,Profile))
 
-            
+   def test_save_method(self):
+            '''
+            test image by save
+            '''
+            self.nature.save_profile()
+            comm=Profile.objects.all()
+            self.assertTrue(len(comm)>0) 
+
+              
         
    
