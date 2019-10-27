@@ -15,9 +15,16 @@ from .serializers import ProfileSerializer,ProjectSerializer
 @login_required(login_url='/accounts/login/')
 def welcome(request):
     date = dt.date.today()
+    # ones_project = Project.objects.all()
+    # all_projects = Project.get_all_projects()
+    return render(request, 'welcome.html', {"date": date})
+
+@login_required(login_url='/accounts/login/')
+def index(request):
     ones_project = Project.objects.all()
     all_projects = Project.get_all_projects()
-    return render(request, 'welcome.html', {"date": date, "all_projects": all_projects,"ones_project":ones_project})
+    return render(request, 'index.html', {"all_projects": all_projects,"ones_project":ones_project})
+
 
 @login_required(login_url='/accounts/login/')
 def upload_project(request):
@@ -29,7 +36,7 @@ def upload_project(request):
             image = form.save(commit=False)
             image.user = current_user
             image.save()
-        return redirect('welcome')
+        return redirect('index')
 
     else:
         form = NewProjectForm()
@@ -125,7 +132,7 @@ def add_comment(request, proj_id):
             comment.posted_by = profiless
             comment.commented_project = project_item
             comment.save()
-            return redirect('welcome')
+            return redirect('index')
 
     else:
         form = CommentForm()
