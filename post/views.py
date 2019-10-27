@@ -95,7 +95,7 @@ def one_project(request,id):
             average_design+= round(sum(design)/len(design))
             average_content+= round(sum(content)/len(content))
         else:
-            average_usability =0.0
+            average_usability = 0.0
             average_design = 0.0
             average_content = 0.0
     

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 # Create your models here.
+
 class Project(models.Model):
     title = models.CharField(max_length =30)
     project_image = models.ImageField(upload_to = 'landing_images/', null=True)
