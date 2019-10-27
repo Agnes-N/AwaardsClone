@@ -72,3 +72,15 @@ class CommentTestClass(TestCase):
   
         Comments.objects.all().delete()
    
+class ProfileTestClass(TestCase):
+    '''
+    images test method
+    '''
+    def setUp(self):
+        self.user1 = User(username='aggy')
+        self.user1.save()
+        self.nature=Profile(2,user=self.user1,bio='cool')
+        self.nature.save_profile()
+
+ 
+   
