@@ -82,5 +82,9 @@ class ProfileTestClass(TestCase):
         self.nature=Profile(2,user=self.user1,bio='cool')
         self.nature.save_profile()
 
- 
+    def test_instance(self):
+            self.assertTrue(isinstance(self.nature,Profile))
+
+            
+        
    
