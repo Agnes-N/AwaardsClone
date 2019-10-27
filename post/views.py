@@ -59,47 +59,47 @@ def my_profile(request):
     my_profile = Profile.objects.filter(user = current_user).first()
     return render(request, 'profile.html', {"my_projects":my_projects, "my_profile":my_profile})
 
-# @login_required(login_url='/accounts/login/') 
-# def one_project(request,id):
+@login_required(login_url='/accounts/login/') 
+def one_project(request,id):
 
-#     ones_project = Project.objects.filter(id = id)
+    ones_project = Project.objects.filter(id = id)
 
-#     all_ratings = Rating.objects.filter(project = id) 
-#     if request.method == 'POST':
-#         form = VotingForm(request.POST)
-#         if form.is_valid():
-#             rate = form.save(commit=False)
-#             rate.user = request.user
-#             rate.project = id
-#             rate.save()
-#         return redirect('oneproject',id)
+    all_ratings = Rating.objects.filter(project = id) 
+    if request.method == 'POST':
+        form = VotingForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = request.user
+            rate.project = id
+            rate.save()
+        return redirect('oneproject',id)
         
-#     else:
-#         form = VotingForm() 
+    else:
+        form = VotingForm() 
 
-#     calculate = Rating.objects.filter(project = id)
-#     usability = []
-#     design = []
-#     content = []
-#     average_usability = 0
-#     average_design = 0
-#     average_content = 0
+    calculate = Rating.objects.filter(project = id)
+    usability = []
+    design = []
+    content = []
+    average_usability = 0
+    average_design = 0
+    average_content = 0
 
-#     for x in calculate:
-#         usability.append(x.usability)
-#         design.append(x.design)
-#         content.append(x.content)
+    for x in calculate:
+        usability.append(x.usability)
+        design.append(x.design)
+        content.append(x.content)
 
-#         if len(usability)>0 or len(design)>0 or len(content)>0:
-#             average_usability+= round(sum(usability)/len(usability))
-#             average_design+= round(sum(design)/len(design))
-#             average_content+= round(sum(content)/len(content))
-#         else:
-#             average_usability =0.0
-#             average_design = 0.0
-#             average_content = 0.0
+        if len(usability)>0 or len(design)>0 or len(content)>0:
+            average_usability+= round(sum(usability)/len(usability))
+            average_design+= round(sum(design)/len(design))
+            average_content+= round(sum(content)/len(content))
+        else:
+            average_usability =0.0
+            average_design = 0.0
+            average_content = 0.0
     
-#     return render(request,'project.html',{"ones_project":ones_project,"all_ratings":all_ratings,"form":form,"usability":average_usability,"design":average_design,"content":average_content})
+    return render(request,'project.html',{"ones_project":ones_project,"all_ratings":all_ratings,"form":form,"usability":average_usability,"design":average_design,"content":average_content})
 
 
 @login_required(login_url='/accounts/login/')
