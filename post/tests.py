@@ -74,7 +74,7 @@ class CommentTestClass(TestCase):
    
 class ProfileTestClass(TestCase):
     '''
-    images test method
+    profile test method
     '''
     def setUp(self):
         self.user1 = User(username='aggy')
@@ -85,14 +85,19 @@ class ProfileTestClass(TestCase):
     def test_instance(self):
             self.assertTrue(isinstance(self.nature,Profile))
 
-   def test_save_method(self):
+    def test_save_method(self):
             '''
-            test image by save
+            test profile by save
             '''
             self.nature.save_profile()
             comm=Profile.objects.all()
             self.assertTrue(len(comm)>0) 
-
+    
+    def test_delete_method(self):
+            '''
+            test of delete profile
+            '''
+            Profile.objects.all().delete()  
               
         
    
