@@ -79,7 +79,7 @@ class ProfileTestClass(TestCase):
     def setUp(self):
         self.user1 = User(username='aggy')
         self.user1.save()
-        self.nature=Profile(2,user=self.user1,bio='cool')
+        self.nature = Profile(2,user=self.user1,bio='cool')
         self.nature.save_profile()
 
     def test_instance(self):
@@ -90,7 +90,7 @@ class ProfileTestClass(TestCase):
             test profile by save
             '''
             self.nature.save_profile()
-            comm=Profile.objects.all()
+            comm = Profile.objects.all()
             self.assertTrue(len(comm)>0) 
     
     def test_delete_method(self):
@@ -99,5 +99,3 @@ class ProfileTestClass(TestCase):
             '''
             Profile.objects.all().delete()  
               
-        
-   

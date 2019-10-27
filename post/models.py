@@ -13,7 +13,7 @@ class Project(models.Model):
 
     @classmethod
     def get_all_projects(cls):
-        all_projects = cls.objects.all().prefetch_related('comments_set')
+        all_projects = cls.objects.all()
         return all_projects
 
     def save_projects(self):
