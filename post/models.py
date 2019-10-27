@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
 # Create your models here.
 class Project(models.Model):
     title = models.CharField(max_length =30)
@@ -61,3 +62,11 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.posted_by
+
+
+class Rating(models.Model):
+    design = models.PositiveIntegerField(default = 0,validators = [MaxValueValidator(10)])
+    usability = models.PositiveIntegerField(default = 0,validators = [MaxValueValidator(10)])
+    content = models.PositiveIntegerField(default = 0,validators = [MaxValueValidator(10)])
+    user = models.ForeignKey(User,on_delete = models.CASCADE)
+    project = models.IntegerField(default = 0)

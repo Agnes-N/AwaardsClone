@@ -5,7 +5,7 @@
 {{block.super}}
 <style>
     .card-footer {
-        position: fixed;
+        position: relative;
         left: 0;
         bottom: 0;
         width: 100%;
@@ -15,14 +15,59 @@
     }
 
     #btv{
-      position:absolute;
-        top:50%;
+        position:absolute;
+        top:40%;
         left:50%;
         transform: translate(-50%,-50%);
         color:white;
         font-size:13px;
         font-family:sans-serif ;
     }
+
+    .mypage{
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .first{
+        background-size: cover;
+        background-repeat: no-repeat;
+        transition: all .5s;
+        -webkit-transition: all .5s;
+        -moz-transition: all .5s;
+        -o-transition: all .5s;
+    }
+
+    .mypage:hover .first, .mypage:focus .first{
+      -ms-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -webkit-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+    .mypage:hover .first:before, .mypage:focus .first::before{
+      display:block;
+    }
+    .mypage:hover a , .mypage:focus a{
+      display:block;
+    }
+    .first::before{
+      content:"";
+      display: none;
+      position: absolute;
+      top:0;
+      left: 0;
+      background-color: black;
+      opacity: 0.6;
+    }
+
+    /* @media screen and(max-width: 960px){
+      .mypage{width: 100%;margin:20px 0px}
+      .wrapper{padding: 20px 20px;}
+    } */
+    
 </style>
 
 <div class="card bg-light text-white">
@@ -31,22 +76,31 @@
         <p class="card-text text-center">Site of the day {{date|date:" F d, Y"}}</p>
     </div>
 </div> 
-<!-- <p>Sites of the day</p> -->
 <div class="container">
+    <h2 class="text-center" style="margin-top: 5%">Submitted Projects</h2>
     <div class="row" style="margin-top: 3%">
         {% for pro in all_projects %}
         <div class="col-md-4" style="margin-right:5%">
+            <div class="card wrapper">
+            <div class="mypage">
+                <div class="first">
             <img src="{{pro.project_image.url}}" width="400" height="300" class="img-responsive" alt="Image">
-            <h5> {{pro.title}} </h5>
-            <h5>Posted by {{pro.user}} </h5>
-            <h5> <small>{{pro.date|timesince}}</small> </h5>
-            <div class="mask flex-center rgba-black-strong">
-                 <a href="{% url 'oneproject' pro.id %}" class="btn btn-outline-success" id="btv" style="border-radius:15px;">More</a>
+                </div>
             </div>
+        </div>
+            <div class="card-body bg-light">
+                    <h5> {{pro.title}} </h5>
+                    <h5>Posted by {{pro.user}} </h5>
+                    <h5> <small>{{pro.date|timesince}}</small> </h5>
+                    <div class="mask flex-center rgba-black-strong">
+                         <a href="{% url 'oneproject' pro.id %}" class="btn btn-success" id="btv" style="border-radius:15px;">More</a>
+                    </div>
+            
         <span>
         <a href="{%url 'comment' pro.id%}" class="btn btn-default"> {{pro.comments_set.all|length}} Comment</a>
         <a href="{% url 'view' pro.id%}" class="btn btn-default">View comments</a>
         </span>
+        </div>
         </div>
         {% endfor %}  
     </div>
@@ -54,7 +108,7 @@
    
 </div>
 
-<!-- <div class="card-footer text-center" style="color:black">Copyright</div> -->
+<div class="card-footer text-center" style="color:black">Copyright</div>
 {% endblock %}
 
 <!--End of the block content-->

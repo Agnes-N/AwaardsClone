@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 import datetime as dt
-from .models import Profile,Project,Comments
+from .models import Profile,Project,Comments,Rating
 from django.contrib.auth.decorators import login_required
-from .forms import NewProjectForm,NewProfileForm,CommentForm
+from .forms import NewProjectForm,NewProfileForm,CommentForm,VotingForm
 from django.http import JsonResponse
 
 from rest_framework.response import Response
@@ -63,7 +63,44 @@ def my_profile(request):
 def one_project(request,id):
 
     ones_project = Project.objects.filter(id = id)
-    return render(request,'project.html',{"ones_project":ones_project})
+
+    all_ratings = Rating.objects.filter(project = id) 
+    if request.method == 'POST':
+        form = VotingForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = request.user
+            rate.project = id
+            rate.save()
+        return redirect('oneproject',id)
+        
+    else:
+        form = VotingForm() 
+
+    calculate = Rating.objects.filter(project = id)
+    usability = []
+    design = []
+    content = []
+    average_usability = 0
+    average_design = 0
+    average_content = 0
+
+    for x in calculate:
+        usability.append(x.usability)
+        design.append(x.design)
+        content.append(x.content)
+
+        if len(usability)>0 or len(design)>0 or len(content)>0:
+            average_usability+= round(sum(usability)/len(usability))
+            average_design+= round(sum(design)/len(design))
+            average_content+= round(sum(content)/len(content))
+        else:
+            average_usability =0.0
+            average_design = 0.0
+            average_content = 0.0
+    
+    return render(request,'project.html',{"ones_project":ones_project,"all_ratings":all_ratings,"form":form,"usability":average_usability,"design":average_design,"content":average_content})
+
 
 @login_required(login_url='/accounts/login/')
 def search_project(request):
