@@ -57,18 +57,18 @@ class CommentTestClass(TestCase):
 
         self.assertTrue(isinstance(self.comm,Comments))    
         
-    # def test_save_method(self):
-    #     '''
-    #     test image by save
-    #     '''
-    #     self.comm.save_comments()
-    #     comm = Comments.objects.all()
-    #     self.assertTrue(len(comm)>0) 
+    def test_save_method(self):
+        '''
+        test image by save
+        '''
+        self.comm.save_comments()
+        comm = Comments.objects.all()
+        self.assertTrue(len(comm)>0) 
 
-    # def test_delete_method(self):
-    #     '''
-    #     test of delete image
-    #     '''
+    def test_delete_method(self):
+        '''
+        test of delete image
+        '''
   
-    #     Comments.objects.all().delete()
+        Comments.objects.all().delete()
    
