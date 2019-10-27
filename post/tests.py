@@ -36,4 +36,39 @@ class ProjectsTestClass(TestCase):
        
         Project.objects.all().delete()
    
+class CommentTestClass(TestCase):
 
+    def setUp(self):
+     
+        self.user1 = User(username = 'aggy')
+        self.user1.save()
+
+        self.nature = Profile(2,user = self.user1,bio='kind')
+        self.nature.save_profile()
+
+        self.james = Project(2,title = 'James',description = 'beautiful',user=self.user1,project_image = "image")
+        self.james.save_projects()
+      
+        self.comm = Comments(comment = 'leaves',commented_project = self.james,posted_by = self.nature)
+        self.comm.save_comments()
+
+ 
+    def test_instance(self):
+
+        self.assertTrue(isinstance(self.comm,Comments))    
+        
+    # def test_save_method(self):
+    #     '''
+    #     test image by save
+    #     '''
+    #     self.comm.save_comments()
+    #     comm = Comments.objects.all()
+    #     self.assertTrue(len(comm)>0) 
+
+    # def test_delete_method(self):
+    #     '''
+    #     test of delete image
+    #     '''
+  
+    #     Comments.objects.all().delete()
+   
