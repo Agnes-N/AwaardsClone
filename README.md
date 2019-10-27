@@ -1,4 +1,4 @@
-# Awwars
+# Awwadrs
 
 An application that allows users to post their projects that they have created and get rated by their peers.
 
@@ -26,18 +26,21 @@ The required installations are:
 ## Dependencies
 
 * beautifulsoup4==4.8.1
+* confusable-homoglyphs==3.2.0
 * dj-database-url==0.5.0
-* Django==1.11
+* Django==1.11.6
 * django-bootstrap4==1.0.1
 * django-heroku==0.3.1
+* django-registration==2.4.1
+* djangorestframework==3.10.3
 * gunicorn==19.9.0
-* Pillow==6.2.0
-* psycopg2==2.8.3
-* pyperclip==1.7.0
+* Pillow==6.2.1
+* psycopg2==2.8.4
 * python-decouple==3.1
 * pytz==2019.3
 * soupsieve==1.9.4
 * whitenoise==4.1.4
+* config==0.3.9
 
 ## Technologies Used
 
