@@ -27,7 +27,6 @@ class Project(models.Model):
         certain_user = cls.objects.filter(title__icontains = search_term)
         return certain_user
         
-
     def __str__(self):
         return self.user
 
@@ -49,6 +48,9 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete() 
 
+    def __str__(self):
+        return self.user
+
 class Comments(models.Model):
     comment = models.CharField(max_length = 250)
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
@@ -63,7 +65,6 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.posted_by
-
 
 class Rating(models.Model):
     design = models.PositiveIntegerField(default = 0,validators = [MaxValueValidator(10)])
