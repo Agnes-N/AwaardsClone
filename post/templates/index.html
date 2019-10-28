@@ -70,7 +70,7 @@
     <div class="row" style="margin-top: 3%">
         {% for pro in all_projects %}
         <div class="col-md-4" style="margin-right:5%">
-            <div class="card wrapper">
+            <div class="card wrapper" style="margin-top:5%">
             <div class="mypage">
                 <div class="first">
             <img src="{{pro.project_image.url}}" width="400" height="300" class="img-responsive" alt="Image">
@@ -86,8 +86,8 @@
                     </div>
             
         <span>
-        <a href="{%url 'comment' pro.id%}" class="btn btn-default"> {{pro.comments_set.all|length}} Comment</a>
-        <a href="{% url 'view' pro.id%}" class="btn btn-default">View comments</a>
+        <a href="{%url 'comment' pro.id%}" class="btn btn-default"> {{pro.comments_set.all|length}} Review Here</a>
+        <a href="{% url 'view' pro.id%}" class="btn btn-default">All Reviews</a>
         </span>
         </div>
         </div>

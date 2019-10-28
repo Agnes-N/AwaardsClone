@@ -8,18 +8,14 @@ from django.http import JsonResponse
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
-# from .models import  MoringaMerch
 from .serializers import ProfileSerializer,ProjectSerializer
 # Create your views here.
 
-@login_required(login_url='/accounts/login/')
 def welcome(request):
     date = dt.date.today()
-    # ones_project = Project.objects.all()
-    # all_projects = Project.get_all_projects()
     return render(request, 'welcome.html', {"date": date})
 
-@login_required(login_url='/accounts/login/')
+# @login_required(login_url='/accounts/login/')
 def index(request):
     ones_project = Project.objects.all()
     all_projects = Project.get_all_projects()
@@ -109,7 +105,7 @@ def one_project(request,id):
     return render(request,'project.html',{"ones_project":ones_project,"all_ratings":all_ratings,"form":form,"usability":average_usability,"design":average_design,"content":average_content})
 
 
-@login_required(login_url='/accounts/login/')
+# @login_required(login_url='/accounts/login/')
 def search_project(request):
     if 'project_name' in request.GET and request.GET["project_name"]:
         search_term = request.GET.get("project_name")
@@ -138,7 +134,7 @@ def add_comment(request, proj_id):
         form = CommentForm()
     return render(request, 'comment_form.html', {"form": form, "proj_id": proj_id})
 
-@login_required(login_url='/accounts/login/')
+# @login_required(login_url='/accounts/login/')
 def comment(request, id):
     mycomments = Comments.objects.filter(commented_project = id).all()
     return render(request, 'comments.html', {"mycomments":mycomments})

@@ -58,8 +58,11 @@
                     <a href="/logout" style="color: white">Logout</a>               
                 </li>         
                                             
-                {% else %} 
-                <a class='btn btn-default' href="/accounts/login" style="color: white">Login</a>  
+                {% else %}
+                <li class="nav-item">
+                    <a class='btn btn-default' href="/accounts/login" style="color: white">Login</a>         
+                </li> 
+                  
                 {% endif %}
             </ul>
         </div>
