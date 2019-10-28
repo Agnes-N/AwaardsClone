@@ -28,7 +28,7 @@ class Project(models.Model):
         return certain_user
         
     def __str__(self):
-        return self.user
+        return self.title
 
 class Profile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -49,7 +49,7 @@ class Profile(models.Model):
         self.delete() 
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
 class Comments(models.Model):
     comment = models.CharField(max_length = 250)
