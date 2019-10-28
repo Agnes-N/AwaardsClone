@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-xl navbar-inverse fixed-top">
+    <a class="navbar-brand" href="{% url 'welcome' %}">Awwwards</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+        <i class="fas fa-ellipsis-v"></i>
+      </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="search-box">
+          <form action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
+              <input type="text" class="input-sm form-control" name="project_name" placeholder="Search">
+              <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+          </form> 
+      </div>
+      <ul style="margin-right:50px;" class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="/admin" class="nav-link">My Admin</a>
+        </li>
+        <li class="nav-item dropdown show">
+          <a style="color:#fff;" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            APIs
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a href="{% url 'profile' %}" class="dropdown-item">Users API</a>
+            <a href="{% url 'profile' %}" class="dropdown-item">Projects API</a>
+          </div>
+        </li>
+
+
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a href="{% url 'myprofile' %}" class="nav-link">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'upload'%}">Submit Project</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+                <a href="/accounts/password/change" style="color: white">Change Password</a> 
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/accounts/login/">Login</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/accounts/register/">Sign Up</a>
+        </li>
+        {% endif %}
+
